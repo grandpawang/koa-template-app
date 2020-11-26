@@ -1,0 +1,30 @@
+version: "3"
+services:
+  mysql-master:
+    image: mysql:5.7
+    container_name: mysql-master
+    environment:
+      MYSQL_ROOT_PASSWORD: "1234"
+      MYSQL_ROOT_HOST: "%"
+      MYSQL_USER: root
+      MYSQL_PASS: "1234"
+    ports:
+      - 3307:3306
+    restart: always
+    volumes:
+      - ./mysql/master:/var/lib/mysql
+      - ./cnf/mysql-master.cnf:/etc/my.cnf
+
+  redis:
+    image: redis
+    container_name: redis
+    stdin_open: true
+    tty: true
+    command:
+      - --appendonly yes
+      - --requirepass "1234"
+    ports:
+      - 6379:6379
+    volumes:
+      - ./redis:/data
+      - ./config.conf:/usr/local/etc/redis/redis.conf
