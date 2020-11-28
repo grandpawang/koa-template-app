@@ -3,11 +3,11 @@ import Koa = require("koa");
 import template = require("./template")
 import http = require("lib/net/http/server")
 import conf = require("src/conf/index")
-import { log } from "lib/log"
+import { system } from "lib/log"
 import chalk = require('chalk');
 
 export function Init(c: conf.Config) {
-  log.info(chalk.gray("loading route..."))
+  system.info(chalk.gray("loading route..."))
   const engine = http.New()
   template.Init()
   route(engine)
@@ -20,11 +20,11 @@ function route(engine: Koa) {
   Array.from([template.route()])
     .forEach(routes => {
       routes.stack.forEach(route => {
-        log.info(`${chalk.bgCyan(route.methods.join("|"))}\t${chalk.yellow(route.path)}`)
+        system.info(`${chalk.bgCyan(route.methods.join("|"))}\t${chalk.yellow(route.path)}`)
       });
 
       engine.use(routes.routes())
       engine.use(routes.allowedMethods())
     })
-  log.info(chalk.green("load route ok"))
+  system.info(chalk.green("load route ok"))
 }

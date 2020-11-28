@@ -14,7 +14,7 @@ async function main() {
   // TODO service init
   // http init
   router.Init(config.Conf)
-  logger.log.info(chalk.green(`up server ok ${chalk.yellow(Date.now() - start + "ms")}`))
+  logger.system.info(chalk.green(`up server ok ${chalk.yellow(Date.now() - start + "ms")}`))
 }
 
 main()

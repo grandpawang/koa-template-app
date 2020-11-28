@@ -1,5 +1,5 @@
 import http = require("lib/net/http/server")
-import { log } from "lib/log"
+import { system } from "lib/log"
 import chalk = require('chalk');
 
 /**
@@ -16,7 +16,7 @@ export let Conf: Config;
  * 加载本地配置
  */
 function loadLocalConfig() {
-  log.info(chalk.gray("loading local config..."))
+  system.info(chalk.gray("loading local config..."))
   Conf = {
     HTTP: {
       Port: 80,
@@ -29,5 +29,5 @@ function loadLocalConfig() {
  */
 export function Init() {
   loadLocalConfig()
-  log.info(chalk.green("load config ok"))
+  system.info(chalk.green("load config ok"))
 }

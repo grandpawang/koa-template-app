@@ -1,3 +1,4 @@
+import chalk = require('chalk');
 import log4js = require('log4js');
 
 export let log: log4js.Logger;
@@ -24,4 +25,11 @@ export function Init() {
   });
 
   log = log4js.getLogger('cheese');
+}
+
+
+export const system = {
+  info: (message?: any, ...optionalParams: any[]) => {
+    console.log(chalk.blueBright("[INFO]"), message, ...optionalParams)
+  }
 }
