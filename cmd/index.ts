@@ -1,18 +1,20 @@
+import chalk = require("chalk")
 import logger = require("../lib/log")
 import config = require("../src/conf")
 import router = require("../src/route")
 
 
 async function main() {
-  // config init
-  config.Init()
+  const start = Date.now()
   // log init
   logger.Init()
+  // config init
+  config.Init()
   // TODO ecode init
   // TODO service init
   // http init
   router.Init(config.Conf)
-  logger.log.info("up server ok")
+  logger.log.info(chalk.green(`up server ok ${chalk.yellow(Date.now() - start + "ms")}`))
 }
 
 main()

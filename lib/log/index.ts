@@ -1,10 +1,8 @@
 import log4js = require('log4js');
 
 export let log: log4js.Logger;
-export let aaa = 10
 
 export function Init() {
-  aaa = 20
   log4js.configure({
     appenders: {
       console: {

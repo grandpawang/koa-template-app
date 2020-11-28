@@ -3,6 +3,8 @@ import Koa = require("koa")
 import core from "./middleware/core"
 import authenticate from "./middleware/authenticate"
 import log from "./middleware/log"
+import { log as logger } from "lib/log"
+import chalk = require('chalk')
 
 export interface Config {
   Host?: string;
@@ -13,6 +15,7 @@ export interface Config {
  * 新建http服务
  */
 export function New() {
+  logger.info(chalk.gray("http server init..."))
   const engine = new Koa(); // 新建一个koa应用
 
   // 跨域
@@ -35,4 +38,5 @@ export function Init(c: Config, engine: Koa) {
 
   // 启动服务
   engine.listen(c.Port, c.Host)
+  logger.info(chalk.green(`http server ${chalk.blue(`http://${c.Host || "localhost"}:${c.Port}`)}`))
 }
