@@ -1,5 +1,4 @@
 import logger = require("../lib/log")
-
 import config = require("../src/conf")
 import router = require("../src/route")
 

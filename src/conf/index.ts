@@ -1,4 +1,4 @@
-import http = require("../../lib/net/http/server")
+import http = require("lib/net/http/server")
 
 /**
  * 全局配置项

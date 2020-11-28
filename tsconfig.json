@@ -1,17 +1,28 @@
 {
   "compilerOptions": {
     "outDir": "dist",
-    "lib": [
-      "es6",
-    ],
-    "target": "es5",
+    "baseUrl": ".",
     "module": "commonjs",
+    "target": "esnext",// node 环境支持 esnext
+    "allowSyntheticDefaultImports": true,
+    "importHelpers": true,
+    "strict": false,
     "moduleResolution": "node",
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "sourceMap": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
     "noImplicitAny": true,
-    "declaration": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "noUnusedParameters": true,
+    "noUnusedLocals": true,
+    "noImplicitReturns": true,
+    "experimentalDecorators": true, // 开启装饰器的使用
+    "emitDecoratorMetadata": true,
+    "allowJs": true,
+    "sourceMap": true,
+    "paths": {
+      "src": ["src"],
+      "lib": ["lib"]
+    },
   },
   "include": [
     "src",

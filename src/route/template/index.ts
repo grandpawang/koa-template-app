@@ -1,4 +1,3 @@
-import Koa = require("Koa")
 import Router = require('koa-router');
 
 import template = require("./template")

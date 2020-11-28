@@ -1,5 +1,5 @@
 import koa = require('koa')
-import { log } from "../../../../log"
+import { log } from "lib/log"
 
 /**
  * 额外输出log
