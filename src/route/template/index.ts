@@ -1,5 +1,4 @@
-import Router = require('koa-router');
-
+import { Router } from "lib/net/http/route"
 import template = require("./template")
 
 /**
@@ -25,6 +24,7 @@ export function Init() {
  * 创建路由
  */
 export function route() {
+
   const router: Router = new Router({ prefix: '/test' });
   router.get("/test", template.test2)
   router.get("/test2", template.test2)
