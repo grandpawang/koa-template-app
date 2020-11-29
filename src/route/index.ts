@@ -20,7 +20,7 @@ function route(engine: Koa) {
   Array.from([template.route()])
     .forEach(routes => {
       routes.stack.forEach(route => {
-        system.info(`${chalk.bgCyan(route.methods.join("|"))}\t${chalk.yellow(route.path)}`)
+        system.info(`${route.methods.map(methods => chalk.blueBright(methods)).join(chalk.yellow(" | "))}\t${chalk.yellow(route.path)}`)
       });
 
       engine.use(routes.routes())
