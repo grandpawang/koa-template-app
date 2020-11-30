@@ -25,7 +25,8 @@ export function Init() {
  */
 export function route() {
 
-  const router: Router = new Router({ prefix: '/test' });
+  const router = new Router({ prefix: '/test' });
+
   router.get("/test", template.test2)
   router.get("/test2", template.test2)
 

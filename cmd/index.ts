@@ -12,7 +12,7 @@ program
   .option("-log, --logfile <logFile>", "日志输出路径", "logs/server-log")
   .option("-c, --config <configPath>", "配置文件位置", "cmd/config.toml")
   .description('启动koa服务')
-  .action((cmd?: Command) => {
+  .action((cmd: Command) => {
     const options = cleanArgs(cmd)
     main(options)
   })

@@ -1,8 +1,6 @@
-import Koa = require("koa")
+import { ecode } from "lib/ecode/common_ecode"
+import { Context, Next } from "lib/net/http/context"
 
-export async function test2(ctx: Koa.Context, next: Koa.Next) {
-
-  ctx.body = { code: 1, message: { data: "test2" } }
-
-  await next()
+export async function test2(ctx: Context, next: Next) {
+  ctx.json(ecode.OK, "test2", next)
 }

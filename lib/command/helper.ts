@@ -68,7 +68,7 @@ export function cleanArgs(cmd: Command): ArgsOptions {
  */
 export function suggestCommands(availableCommands: string[], unknownCommand: string) {
 
-  let suggestion: string;
+  let suggestion: string = "";
 
   availableCommands.forEach(cmd => {
     const isBestMatch = leven(cmd, unknownCommand) < leven(suggestion || '', unknownCommand)
