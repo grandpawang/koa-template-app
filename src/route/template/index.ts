@@ -23,12 +23,8 @@ export function Init() {
 /**
  * 创建路由
  */
-export function route() {
-
-  const router = new Router({ prefix: '/test' });
-
+export function route(router: Router) {
+  router.prefix("/test")
   router.get("/test", template.test2)
   router.get("/test2", template.test2)
-
-  return router
 }
