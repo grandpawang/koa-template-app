@@ -4,11 +4,27 @@ import chalk = require('chalk');
 import toml = require("toml")
 import fs = require("fs")
 import path = require("path")
+import orm = require("lib/database/orm")
 /**
  * 全局配置项
  */
 export interface Config {
   HTTP: http.Config;
+  ORM: orm.Config;
+}
+
+// 默认配置
+const _defaultConfig = {
+  HTTP: {
+    host: "localhost",
+    port: 80
+  },
+  ORM: {
+    host: "localhost",
+    port: 3306,
+    username: "root",
+    password: "1234"
+  }
 }
 
 // 配置单例
@@ -21,11 +37,7 @@ function loadLocalConfig(opts: Record<string, any>) {
   system.info(chalk.gray("loading local config..."))
 
   // 默认值
-  let configFileParse = {
-    HTTP: {
-      Host: "localhost", Port: 80
-    }
-  }
+  let configFileParse = _defaultConfig;
   try {
     const configFileContent = fs.readFileSync(path.resolve(process.cwd(), opts["config"] || "cmd/config.toml")).toString()
     configFileParse = Object.assign(configFileParse, toml.parse(configFileContent) as Config)

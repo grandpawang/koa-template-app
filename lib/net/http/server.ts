@@ -13,8 +13,8 @@ import { Server, createServer as httpCreateServer } from 'http'
  * Http 配置
  */
 export interface Config {
-  Host?: string;
-  Port?: number;
+  host?: string;
+  port?: number;
 }
 
 /**
@@ -62,6 +62,6 @@ export function createServer(c: Config): HttpServe {
 export function Init({engine, config, router, server }:HttpServe) {
   engine.use(router.routes())
   engine.use(router.allowedMethods())
-  server.listen(config.Port,config.Host)
-  system.info(chalk.green(`http server ${chalk.blue(`http://${config.Host || "localhost"}:${config.Port}`)}`))
+  server.listen(config.port,config.host)
+  system.info(chalk.green(`http server ${chalk.blue(`http://${config.host || "localhost"}:${config.port}`)}`))
 }
