@@ -1,11 +1,5 @@
+import conf = require("src/conf")
 import template from "./template"
-
-/**
- * template dao 配置项目
- */
-export interface Config {
-
-}
 
 /**
  * dao
@@ -18,7 +12,7 @@ export interface DaoContext {
  * 新建一个Dao对象
  * @param c Dao配置
  */
-export function New(c: Config) {
+export function New(_: conf.Config) {
   // TODO 初始化服务
 
   // TODO 初始化dao

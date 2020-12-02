@@ -1,11 +1,13 @@
 import { Router } from "lib/net/http/route"
 import template = require("./template")
+import templateSvr = require("src/service/template")
+import conf = require("src/conf")
 
 /**
  * 依赖服务
  */
 interface TemplateServices {
-  templateService: number;
+  templateService: ReturnType<typeof templateSvr.New>;
 }
 
 // 单例对象
@@ -14,9 +16,9 @@ export let templateServices: TemplateServices;
 /**
  * 创建单例服务对象
  */
-export function Init() {
+export function Init(c: conf.Config) {
   templateServices = {
-    templateService: 10
+    templateService: templateSvr.New(c)
   }
 }
 

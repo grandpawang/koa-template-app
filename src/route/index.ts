@@ -10,7 +10,7 @@ export function Init(c: conf.Config) {
   const server = http.createServer(c.HTTP)
   // TODO 初始化依赖服务
   // 初始化路由
-  template.Init()
+  template.Init(c)
   route(server)
   listen(server)
   http.Init(server)
