@@ -7,43 +7,61 @@ import { system } from "lib/log"
 import chalk = require('chalk')
 import { defineContextFunction } from "./context"
 import { Router, defineRouterFunction } from "./route"
+import { Server, createServer as httpCreateServer } from 'http'
 
+/**
+ * Http 配置
+ */
 export interface Config {
   Host?: string;
   Port?: number;
 }
 
 /**
- * 新建http服务
+ * http服务
  */
-export class Http {
-  public config: Config;
-  public engine: Koa<Koa.DefaultState, Koa.DefaultContext>;
-  public router: Router<Koa.DefaultState, Koa.Context>;
+export interface HttpServe {
+  config: Config;
+  server: Server;
+  router: Router<Koa.DefaultState, Koa.Context>;
+  engine: Koa<Koa.DefaultState, Koa.Context>;
+}
 
-  constructor(c: Config){
-    this.config = c
-    this.engine = new Koa(); // 新建一个koa应用
-    this.router = new Router(); // 新建一个koa router
-    // 定义koa返回
-    defineContextFunction(this.engine)
-    // 定义koa route
-    defineRouterFunction(this.router)
-    // 跨域
-    this.engine.use(core)
-    // 认证
-    this.engine.use(authenticate)
-    // 日志
-    this.engine.use(log)
+/**
+ * 创建http服务
+ */
+export function createServer(c: Config): HttpServe {
+  const config = c
+  const engine = new Koa<Koa.DefaultState, Koa.Context>(); // 新建一个koa应用
+  const router = new Router<Koa.DefaultState, Koa.Context>(); // 新建一个koa router
+  // 定义koa返回
+  defineContextFunction(engine)
+  // 定义koa route
+  defineRouterFunction(router)
+  // 跨域
+  engine.use(core)
+  // 认证
+  engine.use(authenticate)
+  // 日志
+  engine.use(log)
+
+  // 使用http server
+  const server = httpCreateServer(engine.callback())
+
+  return {
+    config,
+    server,
+    router,
+    engine,
   }
+}
 
-  /**
+ /**
    * 初始化http服务
   */
-  Init() {
-    this.engine.use(this.router.routes())
-    this.engine.use(this.router.allowedMethods())
-    this.engine.listen(this.config.Port,this.config.Host)
-    system.info(chalk.green(`http server ${chalk.blue(`http://${this.config.Host || "localhost"}:${this.config.Port}`)}`))
-  }
+export function Init({engine, config, router, server }:HttpServe) {
+  engine.use(router.routes())
+  engine.use(router.allowedMethods())
+  server.listen(config.Port,config.Host)
+  system.info(chalk.green(`http server ${chalk.blue(`http://${config.Host || "localhost"}:${config.Port}`)}`))
 }

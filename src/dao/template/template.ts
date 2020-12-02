@@ -1,4 +1,18 @@
+import { DaoContext } from ".";
 
-Dao.prototype.add = function() {
+/**
+ * template dao
+ * @param dao DaoContext dao上下文
+ */
+export default (dao: DaoContext) => ({
+  /**
+   * template add
+   */
+  add: () => {
+    console.log(dao.db);
+  }
 
-}
+
+
+})
+
