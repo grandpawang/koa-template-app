@@ -4,12 +4,6 @@ module.exports = {
     'prettier/@typescript-eslint',
     'plugin:prettier/recommended'
   ],
-  settings: {
-    "react": {
-      "pragma": "React",
-      "version": "detect"
-    }
-  },
   parserOptions: {
     "ecmaVersion": 2019,
     "sourceType": 'module',

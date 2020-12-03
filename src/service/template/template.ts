@@ -8,9 +8,16 @@ export default (s: ServiceContext) => ({
   /**
    * template add
    */
-  add: () => {
-    console.log(s.template.template.add());
-  }
+  add: async (name: string, description: string) => {
+    await s.template.template.add(name, description);
+  },
+
+  /**
+   * template first
+  */
+  first: async (name: string) => {
+    await s.template.template.first(name)
+  },
 
 })
 

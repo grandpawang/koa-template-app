@@ -4,7 +4,7 @@ import config = require("../src/conf")
 import router = require("../src/route")
 import { ArgsOptions } from "../lib/command/types"
 
-export default async function main(opts: ArgsOptions) {
+export default function main(opts: ArgsOptions) {
   const start = Date.now()
   // log init
   logger.Init(opts)

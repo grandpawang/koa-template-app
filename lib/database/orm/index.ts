@@ -15,9 +15,7 @@ export interface Config {
 /**
  * orm数据实体
 */
-export interface ORM {
-  orm: Connection
-}
+export type ORM = Connection
 
 
 /**
@@ -27,18 +25,20 @@ export async function New(
   c: Config,
   entities: NonNullable<BaseConnectionOptions["entities"]>,
   synchronize?: boolean) {
-  // 配置ORM
-  const conn = await createConnection({
-    type: "mysql",
-    database: c.database,
-    host: c.host,
-    username: c.username,
-    password: c.password,
-    entities: entities,
-    synchronize: synchronize,
-  });
-
-  return {
-    orm: conn,
+  try {
+    // 配置ORM
+    const conn = await createConnection({
+      type: "mysql",
+      database: c.database,
+      host: c.host,
+      username: c.username,
+      password: c.password,
+      entities: entities,
+      synchronize: synchronize,
+    });
+    return conn
+  } catch(err) {
+    throw err
+    // return err
   }
 }

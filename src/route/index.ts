@@ -8,9 +8,9 @@ import conf = require("src/conf/index")
  */
 export function Init(c: conf.Config) {
   const server = http.createServer(c.HTTP)
-  // TODO 初始化依赖服务
-  // 初始化路由
+  // 初始化依赖服务
   template.Init(c)
+  // 初始化路由
   route(server)
   listen(server)
   http.Init(server)
