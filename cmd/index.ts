@@ -1,11 +1,17 @@
 import { Command, program } from "commander";
 import chalk = require("chalk")
 import main from "./main"
+import migrate from "./migrate"
 import {
   suggestCommands,
   enhanceErrorMessages,
   cleanArgs
 } from "../lib/command"
+
+
+
+//////////////////////////run//////////////////////////////////////////
+
 
 program
   .command('run')
@@ -17,6 +23,15 @@ program
     main(options)
   })
 
+//////////////////////////run//////////////////////////////////////////
+
+program
+  .command('migrate')
+  .description('同步数据库')
+  .action((cmd: Command) => {
+    const options = cleanArgs(cmd)
+    migrate(options)
+  })
 
 //////////////////////////help//////////////////////////////////////////
 

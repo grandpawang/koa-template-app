@@ -12,6 +12,7 @@
     "@types/koa": "^2.11.6",
     "@types/koa-router": "^7.4.1",
     "@types/leven": "^2.1.2",
+    "@types/mysql": "^2.15.16",
     "@types/typescript": "^2.0.0",
     "chalk": "^4.1.0",
     "commander": "^6.2.0",

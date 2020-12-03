@@ -9,50 +9,36 @@ export interface Config {
   port: number;
   username: string;
   password: string;
-}
-
-/**
- * orm配置
-*/
-export interface ORMConfig {
-  _entities: BaseConnectionOptions["entities"]; // orm的实体
+  database: string;
 }
 
 /**
  * orm数据实体
 */
 export interface ORM {
-  _opts: Config; // 数据库配置
-  _ormOpts: ORMConfig; // orm配置
+  orm: Connection
 }
 
 
 /**
  * 新建orm对象
 */
-export function New(c: Config, ormC: ORMConfig): ORM {
+export async function New(
+  c: Config,
+  entities: NonNullable<BaseConnectionOptions["entities"]>,
+  synchronize?: boolean) {
+  // 配置ORM
+  const conn = await createConnection({
+    type: "mysql",
+    database: c.database,
+    host: c.host,
+    username: c.username,
+    password: c.password,
+    entities: entities,
+    synchronize: synchronize,
+  });
+
   return {
-    _opts: c,
-    _ormOpts: ormC,
+    orm: conn,
   }
 }
-
-/**
- * 执行orm数据库操作
-*/
-export async function exec<Fn extends ((conn: Connection) => any)>
-  (orm: ORM, fn: Fn): Promise<ReturnType<Fn>> {
-  try {
-    const conn = await createConnection({
-      type: "mysql",
-      host: orm._opts.host,
-      username: orm._opts.username,
-      password: orm._opts.password,
-      entities: orm._ormOpts._entities,
-    });
-    return fn(conn);
-  } catch (error) {
-    return error;
-  }
-}
-

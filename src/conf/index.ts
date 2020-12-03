@@ -1,10 +1,10 @@
+import orm = require("lib/database/orm")
 import http = require("lib/net/http/server")
 import { system } from "lib/log"
 import chalk = require('chalk');
 import toml = require("toml")
 import fs = require("fs")
 import path = require("path")
-import orm = require("lib/database/orm")
 /**
  * 全局配置项
  */
@@ -14,7 +14,7 @@ export interface Config {
 }
 
 // 默认配置
-const _defaultConfig = {
+const _defaultConfig: Config = {
   HTTP: {
     host: "localhost",
     port: 80
@@ -23,7 +23,8 @@ const _defaultConfig = {
     host: "localhost",
     port: 3306,
     username: "root",
-    password: "1234"
+    password: "1234",
+    database: "config_center"
   }
 }
 
@@ -52,4 +53,5 @@ function loadLocalConfig(opts: Record<string, any>) {
 export function Init(opts: Record<string, any>) {
   loadLocalConfig(opts)
   system.info(chalk.green("load config ok"))
+  return Conf
 }
