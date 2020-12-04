@@ -1,0 +1,26 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "definitions": {
+        "template.add": {
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "name": {
+                    "default": "test",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "template.first": {
+            "properties": {
+                "name": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        }
+    }
+}
+

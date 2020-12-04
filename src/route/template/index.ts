@@ -1,7 +1,7 @@
 import { Router } from "lib/net/http/route"
 import templateSvr = require("src/service/template")
 import conf = require("src/conf")
-import { NonPromise } from "lib/types";
+// import { NonPromise } from "lib/types";
 
 /**
  * 依赖服务

@@ -30,12 +30,12 @@ export interface HttpServe {
 /**
  * 创建http服务
  */
-export function createServer(c: Config): HttpServe {
+export function createServer(c: Config, schema: boolean | object): HttpServe {
   const config = c
   const engine = new Koa<Koa.DefaultState, Koa.Context>(); // 新建一个koa应用
   const router = new Router<Koa.DefaultState, Koa.Context>(); // 新建一个koa router
   // 定义koa http response
-  defineContextFunction(engine)
+  defineContextFunction(engine, schema)
   // 定义koa route
   defineRouterFunction(router)
   // 跨域

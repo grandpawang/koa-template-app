@@ -1,7 +1,7 @@
 import templateDao = require("src/dao/template")
 import template from "./template"
 import conf = require("src/conf")
-import { NonPromise } from "lib/types";
+// import { NonPromise } from "lib/types";
 
 /**
  * service上下文 依赖的dao
