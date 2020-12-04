@@ -10,6 +10,7 @@
   "dependencies": {
     "@types/commander": "^2.12.2",
     "@types/koa": "^2.11.6",
+    "@types/koa-bodyparser": "^4.3.0",
     "@types/koa-router": "^7.4.1",
     "@types/leven": "^2.1.2",
     "@types/mysql": "^2.15.16",
@@ -17,6 +18,7 @@
     "chalk": "^4.1.0",
     "commander": "^6.2.0",
     "koa": "^2.13.0",
+    "koa-bodyparser": "^4.3.0",
     "koa-router": "^10.0.0",
     "leven": "^3.1.0",
     "log4js": "^6.3.0",

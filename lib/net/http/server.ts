@@ -1,5 +1,5 @@
 import Koa = require("koa")
-
+import bodyParser = require("koa-bodyparser");
 import core from "./middleware/core"
 import authenticate from "./middleware/authenticate"
 import log from "./middleware/log"
@@ -34,7 +34,7 @@ export function createServer(c: Config): HttpServe {
   const config = c
   const engine = new Koa<Koa.DefaultState, Koa.Context>(); // 新建一个koa应用
   const router = new Router<Koa.DefaultState, Koa.Context>(); // 新建一个koa router
-  // 定义koa返回
+  // 定义koa http response
   defineContextFunction(engine)
   // 定义koa route
   defineRouterFunction(router)
@@ -44,7 +44,8 @@ export function createServer(c: Config): HttpServe {
   engine.use(authenticate)
   // 日志
   engine.use(log)
-
+  // 参数解析
+  engine.use(bodyParser())
   // 使用http server
   const server = httpCreateServer(engine.callback())
 
