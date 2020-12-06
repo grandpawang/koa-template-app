@@ -3,7 +3,7 @@ import log4js = require('log4js');
 
 export let log: log4js.Logger;
 
-export function Init(opts: Record<string, any>) {
+export function Init(opts: ArgsOptions) {
   log4js.configure({
     appenders: {
       console: {

@@ -1,8 +1,7 @@
-import chalk = require("chalk")
+import chalk from "chalk"
 import logger = require("../lib/log")
 import config = require("../src/conf")
 import router = require("../src/route")
-import { ArgsOptions } from "../lib/command/types"
 
 export default function main(opts: ArgsOptions) {
   const start = Date.now()

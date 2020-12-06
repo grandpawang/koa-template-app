@@ -50,7 +50,7 @@ function loadLocalConfig(opts: Record<string, any>) {
 /**
  * 初始化配置中心
  */
-export function Init(opts: Record<string, any>) {
+export function Init(opts: ArgsOptions) {
   loadLocalConfig(opts)
   system.info(chalk.green("load config ok"))
   return Conf

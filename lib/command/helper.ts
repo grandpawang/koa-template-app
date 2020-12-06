@@ -1,6 +1,5 @@
-import chalk = require("chalk")
+import chalk from "chalk";
 import leven from "leven"
-import { ArgsOptions } from "./types"
 import { program, Command } from "commander";
 /**
  * 添加commander的错误内容

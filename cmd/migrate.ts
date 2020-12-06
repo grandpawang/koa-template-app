@@ -1,4 +1,3 @@
-import { ArgsOptions } from "../lib/command/types";
 import orm = require("../lib/database/orm");
 import config = require("../src/conf");
 import mysql = require("mysql")
