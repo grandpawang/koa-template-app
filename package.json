@@ -39,13 +39,8 @@
   "devDependencies": {
     "@types/ajv": "^1.0.0",
     "@types/chalk": "^2.2.0",
-    "@typescript-eslint/eslint-plugin": "^4.8.2",
-    "@typescript-eslint/parser": "^4.9.0",
     "ajv": "^6.12.6",
-    "changelog-sn": "^2.1.5",
     "cross-env": "^7.0.2",
-    "husky": "^4.3.4",
-    "lint-staged": "^10.5.3",
     "mysql": "^2.18.1",
     "pretty-quick": "^3.1.0",
     "standard-version": "^9.0.0",
