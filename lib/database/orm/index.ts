@@ -17,6 +17,8 @@ export interface Config {
 */
 export type ORM = Connection
 
+// 单例对象
+let _instance: ORM;
 
 /**
  * 新建orm对象
@@ -25,6 +27,7 @@ export async function New(
   c: Config,
   entities: NonNullable<BaseConnectionOptions["entities"]>,
   synchronize?: boolean) {
+  if(_instance) return _instance
   try {
     // 配置ORM
     const conn = await createConnection({
@@ -36,6 +39,7 @@ export async function New(
       entities: entities,
       synchronize: synchronize,
     });
+    _instance = conn;
     return conn
   } catch(err) {
     throw err
