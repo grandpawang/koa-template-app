@@ -9,7 +9,7 @@ export default (_: TemplateServices) => ({
   add: (c: Context, next: Next) => {
     // 获取参数 参数校验
     const params: template.add = c.request.body
-    console.log(c.validate(params))
+    console.log(c.validate("template.add", params))
     c.json(ecode.OK, "test2", next)
   },
 
@@ -19,7 +19,7 @@ export default (_: TemplateServices) => ({
   first: (c: Context, next: Next) => {
     // 获取参数
     const params: template.first = c.query
-    console.log(c.validate(params))
+    console.log(c.validate("template.first", params))
     // 参数校验
     c.json(ecode.OK, "test2", next)
   }

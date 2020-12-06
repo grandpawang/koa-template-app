@@ -2,8 +2,13 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "definitions": {
         "template.add": {
+            "id": "template.add",
             "properties": {
                 "description": {
+                    "type": "string"
+                },
+                "email": {
+                    "format": "email",
                     "type": "string"
                 },
                 "name": {
@@ -11,14 +16,28 @@
                     "type": "string"
                 }
             },
+            "required": [
+                "description",
+                "email",
+                "name"
+            ],
             "type": "object"
         },
         "template.first": {
+            "id": "template.first",
             "properties": {
+                "email": {
+                    "format": "email",
+                    "type": "string"
+                },
                 "name": {
                     "type": "string"
                 }
             },
+            "required": [
+                "email",
+                "name"
+            ],
             "type": "object"
         }
     }

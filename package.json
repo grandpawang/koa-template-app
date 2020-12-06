@@ -6,7 +6,7 @@
   "scripts": {
     "cmd": "cross-env NODE_PATH=. npx ts-node --files ./cmd/index.ts",
     "dev": "cross-env NODE_PATH=. npx ts-node-dev --files ./cmd/index.ts run",
-    "gen": "typescript-json-schema ./src/@types/api/**/*.d.ts * -o ./src/static/schema.json",
+    "gen": "typescript-json-schema ./src/@types/api/**/*.d.ts * -o ./src/static/schema.json --required",
     "migrate": "cross-env NODE_PATH=. npx ts-node --files ./cmd/index.ts migrate"
   },
   "dependencies": {
