@@ -1,7 +1,7 @@
-import chalk = require('chalk');
+import chalk from 'chalk';
 import log4js = require('log4js');
 
-export let log: log4js.Logger;
+export let httpLog: log4js.Logger;
 
 export function Init(opts: ArgsOptions) {
   log4js.configure({
@@ -9,7 +9,7 @@ export function Init(opts: ArgsOptions) {
       console: {
         type: 'stdout',
       },
-      cheese: {
+      httpLog: {
         type: 'dateFile',
         encoding: 'utf-8',
         filename: opts["logfile"] || 'logs/server-log',
@@ -21,10 +21,10 @@ export function Init(opts: ArgsOptions) {
         alwaysIncludePattern: true,
       },
     },
-    categories: { default: { appenders: ['cheese', 'console'], level: 'info' } }
+    categories: { default: { appenders: ['httpLog', 'console'], level: 'info' } }
   });
 
-  log = log4js.getLogger('cheese');
+  httpLog = log4js.getLogger('httpLog');
 }
 
 
