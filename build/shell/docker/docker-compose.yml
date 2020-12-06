@@ -11,20 +11,36 @@ services:
     ports:
       - 3307:3306
     restart: always
-    volumes:
-      - ./mysql/master:/var/lib/mysql
-      - ./cnf/mysql-master.cnf:/etc/my.cnf
+    # volumes:
+    #   - ./mysql/master:/var/lib/mysql
+    #   - ./cnf/mysql-master.cnf:/etc/my.cnf
 
-  redis:
-    image: redis
-    container_name: redis
-    stdin_open: true
-    tty: true
-    command:
-      - --appendonly yes
-      - --requirepass "1234"
+  mongodb:
+    image: mongo
+    container_name: mongo
+    environment:
+      - AUTH=yes
+      - ADMIN_USER=root
+      - ADMIN_PASS=1234
+      - APPLICATION_DATABASE=gbbmn
+      - APPLICATION_USER=root
+      - APPLICATION_PASS=1234
+    restart: always
     ports:
-      - 6379:6379
-    volumes:
-      - ./redis:/data
-      - ./config.conf:/usr/local/etc/redis/redis.conf
+      - 27017:27017
+    # volumes:
+    #   - ./data:/data/db
+
+  # redis:
+  #   image: redis
+  #   container_name: redis
+  #   stdin_open: true
+  #   tty: true
+  #   command:
+  #     - --appendonly yes
+  #     - --requirepass "1234"
+  #   ports:
+  #     - 6379:6379
+  #   volumes:
+  #     - ./redis:/data
+  #     - ./config.conf:/usr/local/etc/redis/redis.conf

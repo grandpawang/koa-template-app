@@ -6,13 +6,13 @@ services:
     container_name: mongo
     environment:
       - AUTH=yes
-      - ADMIN_USER=coint
+      - ADMIN_USER=root
       - ADMIN_PASS=1234
       - APPLICATION_DATABASE=gbbmn
-      - APPLICATION_USER=coint
+      - APPLICATION_USER=root
       - APPLICATION_PASS=1234
-    volumes:
-      - ./data:/data/db
+    # volumes:
+    #   - ./data:/data/db
     ports:
       - 27017:27017
     restart: always
