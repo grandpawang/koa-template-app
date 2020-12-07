@@ -4,7 +4,7 @@ import core from "./middleware/core"
 import authenticate from "./middleware/authenticate"
 import log from "./middleware/log"
 import { system } from "lib/log"
-import chalk = require('chalk')
+import chalk = require("chalk")
 import { defineContextFunction } from "./context"
 import { Router, defineRouterFunction } from "./route"
 import { Server, createServer as httpCreateServer } from 'http'
@@ -15,6 +15,14 @@ import { Server, createServer as httpCreateServer } from 'http'
 export interface Config {
   host?: string;
   port?: number;
+}
+
+/**
+ * 默认配置
+*/
+export const defaultConfig = {
+  host: "localhost",
+  port: 80
 }
 
 /**

@@ -1,5 +1,7 @@
 /**
- * template数据库
+ * template mysql数据库
+ * 参考定义
+ * https://gitee.com/mirrors/TypeORM
 */
 
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";

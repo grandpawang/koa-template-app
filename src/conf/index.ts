@@ -1,7 +1,8 @@
-import orm = require("lib/database/orm")
+import mysql = require("lib/database/mysql")
 import http = require("lib/net/http/server")
+import mongodb = require("lib/database/mongo")
 import { system } from "lib/log"
-import chalk = require('chalk');
+import chalk from "chalk";
 import toml = require("toml")
 import fs = require("fs")
 import path = require("path")
@@ -10,22 +11,15 @@ import path = require("path")
  */
 export interface Config {
   HTTP: http.Config;
-  ORM: orm.Config;
+  MYSQL: mysql.Config;
+  MONGODB: mongodb.Config;
 }
 
 // 默认配置
 const _defaultConfig: Config = {
-  HTTP: {
-    host: "localhost",
-    port: 80
-  },
-  ORM: {
-    host: "localhost",
-    port: 3306,
-    username: "root",
-    password: "1234",
-    database: "config_center"
-  }
+  HTTP: http.defaultConfig,
+  MYSQL: mysql.defaultConfig,
+  MONGODB: mongodb.defaultConfig,
 }
 
 // 配置单例

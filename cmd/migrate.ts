@@ -1,4 +1,4 @@
-import orm = require("../lib/database/orm");
+import orm = require("../lib/database/mysql");
 import config = require("../src/conf");
 import mysql = require("mysql")
 import {system} from "../lib/log"
@@ -20,7 +20,7 @@ export default async function migrate(opts: ArgsOptions){
   // config init
   const conf = config.Init(opts)
 
-  const c:orm.Config = conf.ORM
+  const c:orm.Config = conf.MYSQL
   const conn = mysql.createConnection({
     host: c.host,
     port: c.port,
@@ -47,7 +47,7 @@ export default async function migrate(opts: ArgsOptions){
     }
     system.info("migrate table")
     // ORM init and migrate models
-    const ormConn = await orm.New(config.Conf.ORM, require("../src/models").mysql, true)
+    const ormConn = await orm.New(config.Conf.MYSQL, require("../src/models").mysql, true)
     ormConn.close()
   } catch(err) {
     system.info(err)
