@@ -1,5 +1,5 @@
 import template = require("./template")
 
-export default [
+export const mysql = [
   ...Object.values(template)
 ]

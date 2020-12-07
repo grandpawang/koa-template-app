@@ -47,7 +47,7 @@ export default async function migrate(opts: ArgsOptions){
     }
     system.info("migrate table")
     // ORM init and migrate models
-    const ormConn = await orm.New(config.Conf.ORM, require("../src/models").default, true)
+    const ormConn = await orm.New(config.Conf.ORM, require("../src/models").mysql, true)
     ormConn.close()
   } catch(err) {
     system.info(err)

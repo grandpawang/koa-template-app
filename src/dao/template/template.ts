@@ -20,8 +20,8 @@ export default (dao: DaoContext) => ({
    * template first
    */
   first: async (name: string) => {
-    let template = dao.orm.getRepository(Template).findOne({name})
-    console.log(template);
+    let template = await dao.orm.getRepository(Template).findOne({name})
+    console.log("dao", template);
     return template
   }
 })

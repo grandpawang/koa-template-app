@@ -15,7 +15,7 @@ export interface DaoContext {
  */
 export async function New(c: conf.Config) {
   // 初始化服务
-  const ormLib = await orm.New(c.ORM, require("src/models").default)
+  const ormLib = await orm.New(c.ORM, require("src/models").mysql)
 
   // 初始化dao
   const dao: DaoContext = {

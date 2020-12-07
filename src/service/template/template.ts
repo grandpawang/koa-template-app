@@ -16,7 +16,7 @@ export default (s: ServiceContext) => ({
    * template first
   */
   first: async (name: string) => {
-    await s.template.template.first(name)
+    return await s.template.template.first(name)
   },
 
 })

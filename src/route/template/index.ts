@@ -5,7 +5,7 @@ import conf = require("src/conf")
 /**
  * 依赖服务
  */
-export interface TemplateServices {
+export interface services {
   template: NonPromise<ReturnType<typeof templateSvr.New>>;
 }
 
@@ -15,7 +15,7 @@ export interface TemplateServices {
 export async function New(c: conf.Config, router: Router) {
   const templateService = await templateSvr.New(c);
   // 初始化服务
-  const services: TemplateServices = {
+  const services: services = {
     template: templateService
   }
   // 初始化路由
