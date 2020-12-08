@@ -6,12 +6,12 @@ export default (svr: services) => ({
   /**
     * template add
   */
-  add: (c: Context, next: Next) => {
+  add: async (c: Context, next: Next) => {
     // 获取参数 参数校验
     const params: template.add = c.request.body
     console.log(c.validate("template.add", params))
     const date = new Date()
-    console.log(svr.template.template.add(date.getDay().toString(), date.toISOString()))
+    await svr.template.template.add(date.getDay().toString(), date.toISOString())
     c.json(ecode.OK, "test2", next)
   },
 

@@ -46,12 +46,14 @@ export async function New(
     system.info(chalk.gray("loading mongodb..."))
     const conn = await createConnection({
       type: "mongodb",
+      name: "mongodb",
       database: c.database,
       host: c.host,
       username: c.username,
       password: c.password,
       entities: entities,
       synchronize: synchronize,
+      useUnifiedTopology: true
     });
     system.info(chalk.green("load mongodb"))
 

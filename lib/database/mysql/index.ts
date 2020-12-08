@@ -46,6 +46,7 @@ export async function New(
     // 配置ORM
     const conn = await createConnection({
       type: "mysql",
+      name: "mysql",
       database: c.database,
       host: c.host,
       username: c.username,

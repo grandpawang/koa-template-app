@@ -7,15 +7,15 @@ import {Entity, ObjectID, ObjectIdColumn, Column} from "typeorm";
 
 
 @Entity()
-export class templateMongo {
+export class TemplateMongo {
 
     @ObjectIdColumn()
     id!: ObjectID;
 
     @Column()
-    firstName!: string;
+    name!: string;
 
     @Column()
-    lastName!: string;
+    description!: string;
 
 }

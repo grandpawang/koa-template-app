@@ -1,16 +1,17 @@
 version: "3"
+
 services:
-  mysql-master:
+  mysql:
     image: mysql:5.7
-    container_name: mysql-master
+    container_name: mysql
+    restart: always
     environment:
       MYSQL_ROOT_PASSWORD: "1234"
       MYSQL_ROOT_HOST: "%"
       MYSQL_USER: root
       MYSQL_PASS: "1234"
     ports:
-      - 3307:3306
-    restart: always
+      - 3306:3306
     # volumes:
     #   - ./mysql/master:/var/lib/mysql
     #   - ./cnf/mysql-master.cnf:/etc/my.cnf
@@ -18,17 +19,14 @@ services:
   mongodb:
     image: mongo
     container_name: mongo
-    environment:
-      - AUTH=yes
-      - ADMIN_USER=root
-      - ADMIN_PASS=1234
-      - APPLICATION_DATABASE=gbbmn
-      - APPLICATION_USER=root
-      - APPLICATION_PASS=1234
     restart: always
     ports:
       - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: 1234
     # volumes:
+    #   - ./cnf/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo-js:ro
     #   - ./data:/data/db
 
   # redis:

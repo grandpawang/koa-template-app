@@ -9,7 +9,7 @@ export default (s: ServiceContext) => ({
    * template add
    */
   add: async (name: string, description: string) => {
-    await s.template.template.add(name, description);
+    return await s.template.template.add(name, description);
   },
 
   /**
