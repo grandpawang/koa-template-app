@@ -4,10 +4,16 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
+    "commitmsg": "commitlint -e $GIT_PARAMS",
     "cmd": "cross-env NODE_PATH=. npx ts-node --files ./cmd/index.ts",
     "dev": "cross-env NODE_PATH=. npx ts-node-dev --files ./cmd/index.ts run",
     "gen": "typescript-json-schema ./src/@types/api/**/*.d.ts * -o ./src/static/schema.json --required",
     "migrate": "cross-env NODE_PATH=. npx ts-node --files ./cmd/index.ts migrate"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-customizable"
+    }
   },
   "dependencies": {
     "@types/commander": "^2.12.2",
@@ -32,11 +38,11 @@
   "devDependencies": {
     "@types/ajv": "^1.0.0",
     "@types/chalk": "^2.2.0",
-    "@typescript-eslint/eslint-plugin": "^4.8.2",
-    "@typescript-eslint/parser": "^4.9.0",
     "ajv": "^6.12.6",
     "cross-env": "^7.0.2",
     "mysql": "^2.18.1",
+    "pretty-quick": "^3.1.0",
+    "standard-version": "^9.0.0",
     "typescript-json-schema": "^0.45.0"
   }
 }

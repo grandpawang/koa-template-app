@@ -14,13 +14,22 @@ yarn validate
 > 数据库迁移
 
 ```shell
-yarn migrate
+yarn migrate mysql
 ```
 
 > 测试环境运行服务
 
 ```shell
 yarn dev
+```
+
+> 构建依赖
+
+```shell
+cd /build/shell
+./main.sh
+# 等待容器内服务初始化完成后执行
+./init.sh
 ```
 
 ## future

@@ -1,7 +1,7 @@
 import { Command, program } from "commander";
 import chalk = require("chalk")
 import main from "./main"
-import migrate from "./migrate"
+import migrateMysql from "./migrate_mysql"
 import {
   suggestCommands,
   enhanceErrorMessages,
@@ -24,11 +24,15 @@ program
 //////////////////////////migrate//////////////////////////////////////////
 
 program
-  .command('migrate')
+  .command('migrate <数据库类型>')
   .description('同步数据库')
-  .action((cmd: Command) => {
+  .action((database:string, cmd: Command) => {
     const options = cleanArgs(cmd)
-    migrate(options)
+    switch(database) {
+      case "mysql": migrateMysql(options); break;
+      default:
+        console.log(`  ` + chalk.red(`未找到命令 ${chalk.yellow(cmd)}.`))
+    }
   })
 
 //////////////////////////help//////////////////////////////////////////

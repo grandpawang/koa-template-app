@@ -1,5 +1,11 @@
 import template = require("./template")
-
-export default [
+import templateMongo = require("./templateMongo")
+// mysql表单
+export const mysql = [
   ...Object.values(template)
+]
+
+// mongodb 表单
+export const mongo = [
+  ...Object.values(templateMongo)
 ]
