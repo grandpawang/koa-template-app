@@ -5,7 +5,7 @@ import {system} from "../lib/log"
 
 function query(conn:mysql.Connection, sql: string): Promise<Array<any>> {
   return new Promise((resolve,reject) => {
-    conn.query(sql, (err, res, _) => {
+    conn.query(sql, (err, res) => {
       if(err) {
         system.info("exec sql error");
         reject(err)
@@ -16,7 +16,7 @@ function query(conn:mysql.Connection, sql: string): Promise<Array<any>> {
   })
 }
 
-export default async function migrate(opts: ArgsOptions){
+export default async function migrate(opts: ArgsOptions) {
   // config init
   const conf = config.Init(opts)
 
@@ -33,7 +33,7 @@ export default async function migrate(opts: ArgsOptions){
       system.info("connect error");
       return;
     }
-    system.info('connect succeed');
+    system.info("connect succeed");
     return
   });
 
@@ -57,7 +57,7 @@ export default async function migrate(opts: ArgsOptions){
     if (err) {
       return;
     }
-    system.info('connect closed');
+    system.info("connect closed");
   });
 
 }

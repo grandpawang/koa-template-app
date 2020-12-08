@@ -4,16 +4,26 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "commitmsg": "commitlint -e $GIT_PARAMS",
     "cmd": "cross-env NODE_PATH=. npx ts-node --files ./cmd/index.ts",
     "dev": "cross-env NODE_PATH=. npx ts-node-dev --files ./cmd/index.ts run",
-    "gen": "typescript-json-schema ./src/@types/api/**/*.d.ts * -o ./src/static/schema.json --required",
-    "migrate": "cross-env NODE_PATH=. npx ts-node --files ./cmd/index.ts migrate"
+    "migrate": "cross-env NODE_PATH=. npx ts-node --files ./cmd/index.ts migrate",
+    "gen": "typescript-json-schema ./src/@types/api/**/*.d.ts * -o ./src/static/schema.json --required"
   },
-  "config": {
-    "commitizen": {
-      "path": "cz-customizable"
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
+  },
+  "lint-staged": {
+    "src/**/*.{ts}": [
+      "prettier --write",
+      "eslint --fix --ext .ts"
+    ],
+    "lib/**/*.{ts}": [
+      "prettier --write",
+      "eslint --fix --ext .ts"
+    ]
   },
   "dependencies": {
     "@types/commander": "^2.12.2",
@@ -21,11 +31,6 @@
     "@types/koa-bodyparser": "^4.3.0",
     "@types/koa-router": "^7.4.1",
     "@types/leven": "^2.1.2",
-    "@types/mysql": "^2.15.16",
-    "@types/typescript": "^2.0.0",
-    "@typescript-eslint/eslint-plugin": "^4.6.1",
-    "@typescript-eslint/parser": "^4.6.1",
-    "chalk": "^4.1.0",
     "commander": "^6.2.0",
     "koa": "^2.13.0",
     "koa-bodyparser": "^4.3.0",
@@ -34,21 +39,33 @@
     "log4js": "^6.3.0",
     "toml": "^3.0.0",
     "ts-node": "^9.0.0",
-    "typeorm": "^0.2.29",
+    "typeorm": "^0.2.29"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^11.0.0",
+    "@commitlint/config-conventional": "^11.0.0",
+    "@types/ajv": "^1.0.0",
+    "@types/chalk": "^2.2.0",
+    "@types/mysql": "^2.15.16",
+    "@types/typescript": "^2.0.0",
+    "@typescript-eslint/eslint-plugin": "^4.6.1",
+    "@typescript-eslint/parser": "^4.6.1",
+    "commitizen": "^4.2.2",
+    "conventional-changelog-cli": "^2.1.1",
+    "cz-conventional-changelog": "^3.3.0",
+    "chalk": "^4.1.0",
+    "ajv": "^6.12.6",
+    "cross-env": "^7.0.2",
+    "mysql": "^2.18.1",
+    "husky": "^4.3.0",
+    "lint-staged": "^10.5.1",
+    "prettier": "^2.1.2",
+    "standard-version": "^9.0.0",
+    "typescript-json-schema": "^0.45.0",
     "typescript": "^4.1.2",
     "eslint": "^7.12.1",
     "eslint-config-prettier": "^6.15.0",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-prettier": "^3.1.4"
-  },
-  "devDependencies": {
-    "@types/ajv": "^1.0.0",
-    "@types/chalk": "^2.2.0",
-    "ajv": "^6.12.6",
-    "cross-env": "^7.0.2",
-    "mysql": "^2.18.1",
-    "pretty-quick": "^3.1.0",
-    "standard-version": "^9.0.0",
-    "typescript-json-schema": "^0.45.0"
   }
 }
