@@ -5,7 +5,7 @@
 */
 import Koa from "koa"
 import Ajv from "ajv"
-import {ecode} from "lib/ecode/common_ecode"
+import {Code} from "lib/ecode"
 
 declare module 'koa' {
   interface DefaultState {
@@ -18,7 +18,7 @@ declare module 'koa' {
     /**
      * 返回json
      */
-    json: (ecode:ecode, data:any, next: Koa.Next) => void;
+    json: (ecode:Code, data:any, next: Koa.Next) => void;
     /**
      * 校验数据
      */

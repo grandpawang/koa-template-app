@@ -1,4 +1,4 @@
-import { ecode } from "lib/ecode/common_ecode"
+import { ecode } from "lib/ecode/systemCode"
 import { Context, Next } from "lib/net/http/context"
 import { services } from ".";
 

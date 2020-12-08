@@ -1,6 +1,6 @@
 import Koa = require("koa")
 import Ajv from "ajv"; // 换jsonschema
-import {ecode} from "lib/ecode/common_ecode"
+import { Code } from "lib/ecode"
 import { system } from "lib/log";
 import chalk from "chalk";
 
@@ -14,10 +14,20 @@ export function defineContextFunction(engine: Koa<Koa.DefaultState, Koa.Context>
   /**
    * ⭐ 格式化放回
    */
-  engine.context.json = async function(ecode:ecode, data:any, next: Koa.Next) {
+  engine.context.json = async function(ecode: Code, data: any, next: Koa.Next) {
+    const code = ecode.Code()
+
+    // http code
+    if(code < 0) {
+      this.status = 500
+    } else {
+      this.status = 200
+    }
+
+    // data code
     this.body = {
-      code: ecode,
-      meseage: "",
+      code: code,
+      meseage: ecode.Message(),
       data: data
     }
     await next()
@@ -27,7 +37,7 @@ export function defineContextFunction(engine: Koa<Koa.DefaultState, Koa.Context>
   /**
    * ⭐ 加载字段校验模块
   */
-  function ajvAddSchema(ajv: Ajv.Ajv,schema: object) {
+  function ajvAddSchema(ajv: Ajv.Ajv, schema: object) {
     Object.keys(schema["definitions"]).forEach((key:string) => {
       const jsonSchema = schema["definitions"][key]
       ajv.addSchema(jsonSchema, key)
