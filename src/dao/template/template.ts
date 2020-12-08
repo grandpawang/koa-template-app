@@ -21,8 +21,8 @@ export default (dao: DaoContext) => ({
     let templateMongo = new TemplateMongo()
     templateMongo.name = name
     templateMongo.description = description
-    await dao.mongo.manager.save(templateMongo)
-    console.log("test mongo")
+    const resMongo = await dao.mongo.manager.save(templateMongo)
+    console.log("test mongo", resMongo)
   },
 
   /**
@@ -33,7 +33,8 @@ export default (dao: DaoContext) => ({
     let template = await dao.mysql.getRepository(Template).findOne({name})
     console.log("test mysql", template);
     // test mongo
-    console.log("test mongo", template);
+    let templateMongo = await dao.mongo.getRepository(TemplateMongo).findOne({name})
+    console.log("test mongo", templateMongo);
     return template
   }
 })
