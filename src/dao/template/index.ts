@@ -19,7 +19,7 @@ export async function New(c: conf.Config) {
   // 初始化mysql服务
   const ormLib = await mysql.New(c.MYSQL, models.mysql)
   // 初始化mongodb服务
-  const mongoLib = await mongo.New(c.MONGODB, models.mongo, true)
+  const mongoLib = await mongo.New(c.MONGODB, models.mongo)
 
   // 初始化dao
   const dao: DaoContext = {
