@@ -1,5 +1,5 @@
 import chalk from "chalk";
-import { system } from "lib/log";
+import { system, httpLog } from "lib/log";
 import { Connection, createConnection } from "typeorm";
 import { BaseConnectionOptions } from "typeorm/connection/BaseConnectionOptions";
 
@@ -60,6 +60,7 @@ export async function New(
     // _instance = conn;
     return conn
   } catch(err) {
+    httpLog.error(err)
     throw err
     // return err
   }

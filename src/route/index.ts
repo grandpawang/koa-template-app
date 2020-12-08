@@ -19,6 +19,7 @@ function route(c: conf.Config, server: http.HttpServe){
 }
 
 // 注册监听
-function listen(_: http.HttpServe){
-
+function listen(server: http.HttpServe){
+  //
+  server
 }

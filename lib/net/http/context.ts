@@ -1,5 +1,5 @@
 import Koa = require("koa")
-import Ajv from "ajv"; // 换jsonschema
+import Ajv from "ajv";
 import { Code } from "lib/ecode"
 import { system } from "lib/log";
 import chalk from "chalk";
@@ -9,7 +9,7 @@ export type Context = Koa.Context;
 export type Next = Koa.Next;
 
 
-export function defineContextFunction(engine: Koa<Koa.DefaultState, Koa.Context>, schema: object | object[]){
+export function defineContextFunction(engine: Koa<Koa.DefaultState, Koa.Context>, schema: Obj | Obj[]){
 
   /**
    * ⭐ 格式化放回
@@ -37,7 +37,7 @@ export function defineContextFunction(engine: Koa<Koa.DefaultState, Koa.Context>
   /**
    * ⭐ 加载字段校验模块
   */
-  function ajvAddSchema(ajv: Ajv.Ajv, schema: object) {
+  function ajvAddSchema(ajv: Ajv.Ajv, schema: Obj) {
     Object.keys(schema["definitions"]).forEach((key:string) => {
       const jsonSchema = schema["definitions"][key]
       ajv.addSchema(jsonSchema, key)

@@ -7,7 +7,7 @@ import { system } from "lib/log"
 import chalk = require("chalk")
 import { defineContextFunction } from "./context"
 import { Router, defineRouterFunction } from "./route"
-import { Server, createServer as httpCreateServer } from 'http'
+import { Server, createServer as httpCreateServer } from "http"
 
 /**
  * Http 配置
@@ -38,7 +38,7 @@ export interface HttpServe {
 /**
  * 创建http服务
  */
-export function createServer(c: Config, schema: object | object[]): HttpServe {
+export function createServer(c: Config, schema: Obj | Obj[]): HttpServe {
   const config = c
   const engine = new Koa<Koa.DefaultState, Koa.Context>(); // 新建一个koa应用
   const router = new Router<Koa.DefaultState, Koa.Context>(); // 新建一个koa router
@@ -65,7 +65,7 @@ export function createServer(c: Config, schema: object | object[]): HttpServe {
   }
 }
 
- /**
+/**
    * 初始化http服务
   */
 export function Init({engine, config, router, server }:HttpServe) {

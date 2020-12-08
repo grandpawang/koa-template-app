@@ -7,10 +7,7 @@ import Koa from "koa"
 import Ajv from "ajv"
 import {Code} from "lib/ecode"
 
-declare module 'koa' {
-  interface DefaultState {
-  }
-
+declare module "koa" {
   /**
    * 格式化json输出
   */

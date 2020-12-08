@@ -6,7 +6,7 @@ import { program, Command } from "commander";
  */
 export const enhanceErrorMessages = (methodName: string, log: (...args: any[]) => string) => {
   program.Command.prototype[methodName] = function (...args: any[]) {
-    if (methodName === 'unknownOption' && this._allowUnknownOption) {
+    if (methodName === "unknownOption" && this._allowUnknownOption) {
       return
     }
     this.outputHelp()
@@ -47,14 +47,14 @@ export function loadCommand(commandName: string, moduleName: string) {
 export function cleanArgs(cmd: Command): ArgsOptions {
   // 去除 --字符
   function camelize(str: string) {
-    return str.replace(/-(\w)/g, (_, c) => c ? c.toUpperCase() : '')
+    return str.replace(/-(\w)/g, (_, c) => c ? c.toUpperCase() : "")
   }
 
   const args = {} as ArgsOptions
   cmd.options.forEach((o: any) => {
-    const key = camelize(o.long.replace(/^--/, ''))
+    const key = camelize(o.long.replace(/^--/, ""))
     // 如果不存在选项，并且Command具有相同名称的方法 不应复制
-    if (typeof cmd[key] !== 'function' && typeof cmd[key] !== 'undefined') {
+    if (typeof cmd[key] !== "function" && typeof cmd[key] !== "undefined") {
       args[key] = cmd[key]
     }
   })
@@ -67,10 +67,10 @@ export function cleanArgs(cmd: Command): ArgsOptions {
  */
 export function suggestCommands(availableCommands: string[], unknownCommand: string) {
 
-  let suggestion: string = "";
+  let suggestion = "";
 
   availableCommands.forEach(cmd => {
-    const isBestMatch = leven(cmd, unknownCommand) < leven(suggestion || '', unknownCommand)
+    const isBestMatch = leven(cmd, unknownCommand) < leven(suggestion || "", unknownCommand)
     if (leven(cmd, unknownCommand) < 3 && isBestMatch) {
       suggestion = cmd
     }

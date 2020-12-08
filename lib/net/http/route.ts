@@ -1,6 +1,6 @@
-import chalk = require('chalk');
-import koaRouter = require('koa-router');
-import { system } from 'lib/log';
+import chalk = require("chalk");
+import koaRouter = require("koa-router");
+import { system } from "lib/log";
 import { Context } from "./context";
 import { State } from "./state";
 

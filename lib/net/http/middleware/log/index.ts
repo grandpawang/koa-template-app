@@ -1,10 +1,10 @@
-import koa = require('koa')
+import koa = require("koa")
 import { httpLog } from "lib/log"
 
 /**
  * 额外输出log
  */
-const expansLog = async (ctx: koa.Context, next: Function) => {
+const expansLog = async (ctx: koa.Context, next: koa.Next) => {
   // 记录请求开始的时间
   const startTime = Date.now();
   await next();

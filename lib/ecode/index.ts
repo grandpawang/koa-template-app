@@ -25,7 +25,7 @@ export interface Code extends Error {
  * @param message 错误信息
  */
 export function New(e: number, message: string): Code {
-  let ecode = new Error(message) as Code
+  const ecode = new Error(message) as Code
 
   ecode.code = e;
 
